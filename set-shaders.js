@@ -145,9 +145,11 @@ void main() {
 //     col *= 0.2 + 0.8 * pow(32.0 * uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y), 0.2);
     gl_FragColor = vec4(0.4 - (col - rando * 0.1), 1.0);
 //     gl_FragColor.b *= 0.5;
+//     gl_FragColor.rgb = 1.0 - gl_FragColor.rgb;
 //     gl_FragColor = gl_FragColor.brga;
 //     gl_FragColor.rgb = 0.4 - gl_FragColor.rgb;
-//     gl_FragColor = gl_FragColor.grba;
+//     rouge framboise
+    gl_FragColor = gl_FragColor.bgra;
 //         gl_FragColor = gl_FragColor.gbra;
 }
 // endGLSL
