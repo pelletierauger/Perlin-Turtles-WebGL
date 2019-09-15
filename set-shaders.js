@@ -57,7 +57,7 @@ const mat2 m2 = mat2(1.6,  1.2, -1.2,  1.6);
 float fbm(vec2 p) {
     float amp = 0.5;
     float h = 0.0;
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 3; i++) {
         float n = noise(p);
         h += amp * n;
         amp *= 0.5;
@@ -185,7 +185,7 @@ setDotsShaders = function() {
         center = vec2(gl_Position.x, gl_Position.y);
         center = 512.0 + center * 512.0;
         myposition = vec2(gl_Position.x, gl_Position.y);
-        gl_PointSize = 3.0 + (cos((coordinates.x + coordinates.y) * 4000000.) + 1.0) * 0.75;
+        gl_PointSize = 2.0 + (cos((coordinates.x + coordinates.y) * 4000000.) + 1.0) * 0.75;
     }
     // endGLSL
     `;

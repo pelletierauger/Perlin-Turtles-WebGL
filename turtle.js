@@ -98,21 +98,21 @@ Turtle.prototype.showLocation = function() {
 turtleWalk = function(ind) {
     let oneDValue = Math.floor(turtlePos[0] * 0.2) + (Math.floor(turtlePos[1] * 0.2) * gridXAmount);
     turtleVal = grid[oneDValue];
-    let r = 6;
+    let r = 2;
     let a;
-    if (turtleVal < 0.5) {
-        a = 2 * 0.5;
+    if (turtleVal < 0.45) {
+        a = 0.1 * 0.5;
     } else {
         a = -7 * 0.5;
     }
-    a *= turtleVal * 25;
+    a *= turtleVal * 15;
     let x = Math.cos(a) * r;
     let y = Math.sin(a) * r;
     if (turtlePos[0] + x > 0 && turtlePos[0] + x < width &&
         turtlePos[1] + y > 0 && turtlePos[1] + y < height) {
         turtlePos[0] += x;
         turtlePos[1] += y;
-        vertices.push((turtlePos[0] - 640) * 0.00175, (turtlePos[1] - 360) * 0.0029, 0);
+        vertices.push((turtlePos[0] - 640) * 0.00175 * 0.7, (turtlePos[1] - 360) * 0.0029 * 0.7, 0);
     } else {
         turtlePos[0] = initPos[respawnTimes * 2];
         turtlePos[1] = initPos[respawnTimes * 2 + 1];
