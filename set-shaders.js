@@ -135,6 +135,7 @@ void main() {
 //     float cloud = 1.5 + smoke.r;
 //     col = mix(background, sunCol, sun);
     vec3 smoke2 = smokeEffect(p + vec2(-1.0, -2.0));
+//     float cloud2 = 1.25 + smoke2.r;
     float cloud2 = 0.85 + smoke2.r;
 //     col = mix(mountCol * 1.2, background, mountain3);
 //     col = mix(mountCol * 0.9, background, mountain1);
@@ -220,6 +221,7 @@ setDotsShaders = function() {
 //         float rando = rand(pos);
         // gl_FragColor = vec4(1.0, (1.0 - dist_squared * 40.) * 0.6, 0.0, alpha + ((0.12 - dist_squared) * 4.) - (rando * 0.2));
         gl_FragColor = vec4(0.0125, 0.02 - dist_squared, 0.0 - alpha * 120., (3. - dist_squared * 24.0) * 0.045 + alpha) * 1.25;
+//         gl_FragColor.rgb = 1.0 - gl_FragColor.rgb;
 //         gl_FragColor = vec4(1.0, 1.0 - dist_squared * 1.0, 0.0, 0.35 - dist_squared - (rando * 0.2));
         // gl_FragColor = vec4(d * 0.001, uv.x, 0.0, 0.25);
     }
