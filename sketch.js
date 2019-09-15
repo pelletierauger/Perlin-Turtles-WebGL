@@ -9,6 +9,8 @@ let positive = true;
 let intensity;
 let drawCount = 0;
 let drawIncrement = 0.000125;
+let noiseCount = 0;
+let noiseIncrement = 0.000125;
 let vertexBuffer;
 let vertices = [];
 
@@ -96,9 +98,10 @@ function setup() {
     for (var x = 0; x < gridXAmount; x++) {
         for (var y = 0; y < gridYAmount; y++) {
             var oneDValue = x + (y * gridXAmount);
-            // let value = noise(x * 0.025, y * 0.025);
-            let value = openSimplex.noise3D(x * 0.025, y * 0.025, 0);
-            grid[oneDValue] = (value + 1) * 0.5;
+            let value = noise(x * 0.025, y * 0.025);
+            // let value = openSimplex.noise3D(x * 0.025, y * 0.025, 0);
+            // grid[oneDValue] = (value + 1) * 0.5;
+            grid[oneDValue] = value;
         }
     }
     for (let i = 0; i < 40000; i++) {
@@ -138,18 +141,18 @@ draw = function() {
     // if (exporting && frameCount < maxFrames) {
     //     frameExport();
     // }
-    var t = drawCount;
+    var t = noiseCount;
     for (var x = 0; x < gridXAmount; x++) {
         for (var y = 0; y < gridYAmount; y++) {
             var oneDValue = x + (y * gridXAmount);
             let value = noise(x * 0.01, y * 0.01, t);
             // let value = openSimplex.noise3D(x * 0.025, y * 0.025, t);
-            grid[oneDValue] = (value + 1) * 0.5;
+            // grid[oneDValue] = (value + 1) * 0.5;
+            grid[oneDValue] = value;
         }
     }
+    noiseCount += noiseIncrement;
 }
-
-logJavaScriptConsole(frameRate())
 
 // function windowResized() {
 //     resizeCanvas(windowWidth, windowHeight);
@@ -174,3 +177,6 @@ function keyPressed() {
         }
     }
 }
+
+// logJavaScriptConsole(frameRate())
+// noiseIncrement *= 10;
