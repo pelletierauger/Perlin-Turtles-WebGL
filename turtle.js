@@ -98,7 +98,7 @@ Turtle.prototype.showLocation = function() {
 turtleWalk = function(ind) {
     let oneDValue = Math.floor(turtlePos[0] * 0.2) + (Math.floor(turtlePos[1] * 0.2) * gridXAmount);
     turtleVal = grid[oneDValue];
-    let r = 6;
+    let r = 2;
     let a;
     if (turtleVal < 0.5) {
         a = 2 * 0.5;

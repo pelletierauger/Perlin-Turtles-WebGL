@@ -115,7 +115,7 @@ function setup() {
 }
 
 initPos = [];
-for (let i = 0; i < 40000; i++) {
+for (let i = 0; i < 240000; i++) {
     //     initPos.push({ x: random(width), y: random(height) });
     // initPos.push(random(width), random(height));
 }
@@ -130,7 +130,7 @@ draw = function() {
     // }
     respawnTimes = 0;
     turtlePos = [0, 0];
-    for (let i = 0; i < 40000; i++) {
+    for (let i = 0; i < 240000; i++) {
         turtleWalk();
     }
     drawDots();

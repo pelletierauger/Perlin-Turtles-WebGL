@@ -140,13 +140,13 @@ void main() {
 //     col = mix(mountCol * 0.9, background, mountain1);
 //     col = mix(cloudCol, col, cloud);
 //     col = mix(mountCol, col, mountain2);
-    col = mix(cloudCol, background, vec3(cloud2 * 0.85, cloud2 * 0.85, cloud2 * 4.0));
+    col = mix(cloudCol, background, vec3(cloud2 * 1.0 + sin(uv.x * 5. + uv.y * 2.) * 0.25, cloud2 * 0.85 + sin(sin(uv.x * 0.1) * 5. * uv.y * 1.) * 8.85, cloud2 * 4.0));
     float rando = rand(vec2(uv.x, uv.y) * 100.);
 //     col *= 0.2 + 0.8 * pow(32.0 * uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y), 0.2);
-    gl_FragColor = vec4(0.4 - (col - rando * 0.1), 1.0);
+    gl_FragColor = vec4(0.1 - (col - rando * 0.1), 1.0);
 //     gl_FragColor.b *= 0.5;
 //     gl_FragColor = gl_FragColor.brga;
-//     gl_FragColor.rgb = 0.4 - gl_FragColor.rgb;
+//     gl_FragColor.rgb = 1.0 - gl_FragColor.rgb;
 //     gl_FragColor = gl_FragColor.grba;
 //         gl_FragColor = gl_FragColor.gbra;
 }
