@@ -112,6 +112,13 @@ float circ(float speed, float size, float vx, float vy, float dist) {
 float rand(vec2 co){
     return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453 * (2.0 + sin(time)));
 }
+vec3 czm_saturation(vec3 rgb, float adjustment)
+{
+    // Algorithm from Chapter 16 of OpenGL Shading Language
+    const vec3 W = vec3(0.2125, 0.7154, 0.0721);
+    vec3 intensity = vec3(dot(rgb, W));
+    return mix(intensity, rgb, adjustment);
+}
 void main() {
     vec2 uv = gl_FragCoord.xy / vec2(1600, 1600);
     vec2 p = gl_FragCoord.xy/1000.0;
@@ -145,6 +152,7 @@ void main() {
 //     col *= 0.2 + 0.8 * pow(32.0 * uv.x * uv.y * (1.0 - uv.x) * (1.0 - uv.y), 0.2);
     gl_FragColor = vec4(0.1 - (col - rando * 0.1), 1.0);
 //     gl_FragColor.b *= 0.5;
+    gl_FragColor.rgb = czm_saturation(gl_FragColor.rgb, 1.25);
 //     gl_FragColor = gl_FragColor.brga;
 //     gl_FragColor.rgb = 1.0 - gl_FragColor.rgb;
 //     gl_FragColor = gl_FragColor.grba;
@@ -185,7 +193,7 @@ setDotsShaders = function() {
         center = vec2(gl_Position.x, gl_Position.y);
         center = 512.0 + center * 512.0;
         myposition = vec2(gl_Position.x, gl_Position.y);
-        gl_PointSize = 3.0 + (cos((coordinates.x + coordinates.y) * 4000000.) + 1.0) * 0.75;
+        gl_PointSize = 1.5 + (cos((coordinates.x + coordinates.y) * 4000000.) + 1.0) * 0.5;
     }
     // endGLSL
     `;
