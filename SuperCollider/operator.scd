@@ -47,3 +47,16 @@ Pbind(\instrument, \operator,
 \amp, 4, \mod1Amp, 2500
 ).play;
 )
+
+
+~count = Pseq([[-1, 9, 7, 2], [-3, 4, 7, 2]], inf).asStream;
+(
+var fr = ~count.next;
+Pbind(\instrument, \operator, 
+\dur, Pseq([0.65] * 0.125 * 8, 4),
+\freq, 440 * Pseq(fr, 4).midiratio, 
+\atk, 1, \dec, 0.4, 
+\sustime, 0.1, \rel, 12.5, 
+\amp, 4, \mod1Amp, 2500
+).play;
+)
