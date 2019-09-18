@@ -2,7 +2,7 @@
 SynthDef.new(\operator, {
     arg out = 0, freq = 440, pan = 0, lfoFreq = 1, 
     atk = 1, dec = 1, sustime = 1, rel = 2, sus = 0.7, pMod = 0.2, amp = 1,
-    mod1 = 1, mod2 = 1, mod1Amp = 0, lfo2Freq = 10;
+    mod1 = 1, mod2 = 1, mod1Amp = 0, lfo2Freq = 10, sigUHAmp = 0.01;
     var sig, env, lfo, lfo2, mod;
     // Safety measures, constraining values.
 //     amp = min(max(amp, 0), 1.5);
@@ -12,7 +12,7 @@ SynthDef.new(\operator, {
     mod = SinOsc.ar(freq * 1) + (SinOsc.ar(freq * 8) * 0.01) + (SinOsc.ar(freq * 48) * 0.5) * mod1Amp * Line.kr(1.0, 0.0, 4);
     mod = mod * SinOsc.ar(3);
     sig = SinOsc.ar([freq, freq + 1] + mod) * 0.1;
-    sig = sig + (SinOsc.ar([freq + 1, freq] + mod * 8) * 0.01) + (SinOsc.ar([freq + 1, freq] + mod * 4) * 0.01);
+    sig = sig + (SinOsc.ar([freq + 1, freq] + mod * 8) * sigUHAmp) + (SinOsc.ar([freq + 1, freq] + mod * 4) * sigUHAmp);
     sig = sig * env * amp;
     sig = LPF.ar(sig, SinOsc.ar(4).range(600, 2000));
     sig = Balance2.ar(sig[0], sig[1], pan, 1);
@@ -36,10 +36,11 @@ Synth.new(\operator, [\freq, 220 * -7.midiratio, \atk, 0.001, \dec, 0.001, \sust
 
 
 
+Synth.new(\operator, [\freq, 440 * 16.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.1, \rel, 12.5, \amp, 2, \mod1Amp, 5500, \sigUHAmp, 0.5]);
 (
 var fr = [-1, 9, 7, 2];
 Pbind(\instrument, \operator, 
-\dur, Pseq([0.65], 4),
+\dur, Pseq([0.65] * 0.125 * 1, 4),
 \freq, 440 * Pseq(fr, 4).midiratio, 
 \atk, 1, \dec, 0.4, 
 \sustime, 0.1, \rel, 12.5, 
