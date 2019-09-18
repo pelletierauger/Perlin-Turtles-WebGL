@@ -27,9 +27,22 @@ Synth.new(\operator, [\freq, 220 * 4.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.
 Synth.new(\operator, [\freq, 220 * -1.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.1, \rel, 12.5, \amp, 4, \mod1Amp, 50]);
 )
 (
-Synth.new(\operator, [\freq, 440 * 2.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.1, \rel, 12.5, \amp, 1, \mod1Amp, 1500]);
-Synth.new(\operator, [\freq, 440 * 7.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.1, \rel, 12.5, \amp, 1, \mod1Amp, 1500]);
-Synth.new(\operator, [\freq, 440 * 4.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.1, \rel, 12.5, \amp, 1, \mod1Amp, 1500]);
-Synth.new(\operator, [\freq, 440 * -1.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.1, \rel, 12.5, \amp, 1, \mod1Amp, 1500]);
+Synth.new(\operator, [\freq, 440 * 2.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.1, \rel, 12.5, \amp, 1, \mod1Amp, 3500]);
+Synth.new(\operator, [\freq, 440 * 7.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.1, \rel, 12.5, \amp, 1, \mod1Amp, 3500]);
+Synth.new(\operator, [\freq, 440 * 4.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.1, \rel, 12.5, \amp, 1, \mod1Amp, 3500]);
+Synth.new(\operator, [\freq, 440 * -1.midiratio, \atk, 1, \dec, 0.4, \sustime, 0.1, \rel, 12.5, \amp, 1, \mod1Amp, 3500]);
 )
 Synth.new(\operator, [\freq, 220 * -7.midiratio, \atk, 0.001, \dec, 0.001, \sustime, 0.00, \rel, 2, \amp, 12, \mod1Amp, 4800]);
+
+
+
+(
+var fr = [-1, 9, 7, 2];
+Pbind(\instrument, \operator, 
+\dur, Pseq([0.65], 4),
+\freq, 440 * Pseq(fr, 4).midiratio, 
+\atk, 1, \dec, 0.4, 
+\sustime, 0.1, \rel, 12.5, 
+\amp, 4, \mod1Amp, 2500
+).play;
+)
