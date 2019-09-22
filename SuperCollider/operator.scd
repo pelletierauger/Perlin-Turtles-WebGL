@@ -50,6 +50,7 @@ Pbind(\instrument, \operator,
 
 
 ~count = Pseq([[-1, 9, 7, 2], [-3, 4, 7, 2]], inf).asStream;
+~count = Pseq([[-1, 9, 7, 2], [-3, 12, 7, 2], [-1, 9, 7, 2], [-3, 4, 7, 2]], inf).asStream;
 (
 var fr = ~count.next;
 Pbind(\instrument, \operator, 
